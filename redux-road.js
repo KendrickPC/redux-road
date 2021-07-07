@@ -21,6 +21,13 @@ export default function appReducer(state = initialWagonState, action) {
         days_on_road: state.days_on_road + action.payload
       }
     }
+    case 'tippedWagon': {
+      return { ...state,
+        supplies: state.supplies - 30,
+        distance_travelled: state.distance_travelled,
+        days_on_road: state.days_on_road + 1
+      }
+    }
     default:
       // If this reducer doesn't recognize the action type, or doesn't
       // care about this specific action, return the existing state unchanged

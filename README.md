@@ -91,5 +91,11 @@ If the action.type is 'travel', assume that the action.payload contains the numb
   - 10 more kilometers of distance traveled for each day
   - The number of days added to days
 
+6. If a player drives off-road or across deep rivers, the wagon may tip! You’ll need to spend some supplies and a day to fix it.
+
+If the action.type is 'tippedWagon', return a new state object with:
+  - 30 less supplies
+  - The same distance
+  - 1 more day
 
 
