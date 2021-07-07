@@ -35,4 +35,8 @@ function appReducer(state = initialWagonState, action) {
   }
 };
 
-console.log(appReducer(undefined, {}))
+let currentState = appReducer(initialWagonState, {})
+currentState = appReducer(currentState, {type: 'travel', payload: 1})
+currentState = appReducer(currentState, {type: 'gather', payload: undefined})
+
+console.log(currentState)

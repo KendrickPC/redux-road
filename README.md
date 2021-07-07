@@ -18,14 +18,14 @@ const initialWagonState = {
 ```
 
 2. Define an empty reducer that will manage the state of the game. You can give it any name you prefer. 
-Note: I chose the name appReducer in my function in line with the Redux documentation.
+Note: I chose the name appReducer in my function in line with the Redux documentation. Remove export default from the front of the function declaration as it will not run this script locally on the computer.
 
   Like any Redux reducer, it should be a function with state and action parameters. It should set state to initialWagonState if no value is provided.
 
   [Redux documentation on reducers](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)
 
 ```javascript
-export default function appReducer(state = initialWagonState, action) {
+function appReducer(state = initialWagonState, action) {
   switch (action.type) {
     // Do something here based on the different types of actions
     default:
@@ -119,7 +119,73 @@ console.log(appReducer(undefined, {}))
 
 8. Our first day will be dedicated to travel.
 
-  Call the reducer with the wagon state and an action with type: 'travel' and payload: 1.
-  Store the returned new state back into wagon.
-  Print the new state.
-  Our wagon state should look like this:
+Call the reducer with the wagon state and an action with type: 'travel' and payload: 1.
+Store the returned new state back into wagon.
+Print the new state.
+Our wagon state should look like this:
+```javascript
+{
+  supplies: 80,
+  distance: 10,
+  days: 1
+}
+```
+
+```javascript
+console.log(appReducer(initialWagonState, {type: 'travel', payload: 1}))
+// the above and below calls to our reducer give the same results
+console.log(appReducer(undefined, {type: 'travel', payload: 1}))
+```
+
+9. On the second day, we stop to gather supplies.
+
+Call the reducer with the new wagon state and an action with type: 'gather' and no payload.
+Store the new state back into wagon.
+Print the new state.
+Our wagon state should look like this:
+```javascript
+{
+  supplies: 95,
+  distance: 10,
+  days: 2
+}
+```
+Hint: You can overwrite your state variable like so:
+```javascript
+let myState = reducer(undefined, {});
+myState = reducer(myState, action1);
+myState = reducer(myState, action2);
+```
+My code, to update the current state, as follows:
+```javascript
+let currentState = appReducer(initialWagonState, {})
+currentState = appReducer(currentState, {type: 'travel', payload: 1})
+currentState = appReducer(currentState, {type: 'gather', payload: undefined})
+console.log(currentState)
+```
+
+10. 
+
+
+
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
