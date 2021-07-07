@@ -39,6 +39,24 @@ export default function appReducer(state = initialWagonState, action) {
 3. Add a switch statement to your reducer. The default case should return the state.
 Note: The switch statement was added, according to the Redux documentation on reducers link above.
 
+4. A player may gather supplies, which takes them a day and doesn’t cover any distance.
 
+If the action.type is 'gather', return a new state object with:
+  - 15 more supplies
+  - The same distance
+  - 1 more day
+
+Make sure to return a new object to comply with the three rules of reducers.
+Note: Nested inside my switch (action.type) and using the hint given, I inserted the following object:
+
+```javascript
+case 'gather': {
+  return { ...state,
+    supplies: state.supplies + 15,
+    distance_travelled: state.distance_travelled + 0,
+    days_on_road: state.days_on_road + 1
+  }  
+}
+```
 
 
