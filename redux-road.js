@@ -4,4 +4,13 @@ const initialWagonState = {
   days_on_road: 0
 };
 
-console.log(initialWagonState)
+export default function appReducer(state = initialWagonState, action) {
+  switch (action.type) {
+    // Do something here based on the different types of actions
+    default:
+      // If this reducer doesn't recognize the action type, or doesn't
+      // care about this specific action, return the existing state unchanged
+      return state;
+  }
+};
+
