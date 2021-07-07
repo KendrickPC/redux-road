@@ -98,4 +98,21 @@ If the action.type is 'tippedWagon', return a new state object with:
   - The same distance
   - 1 more day
 
+7. Let’s try our game out.
 
+Start a game by calling the reducer with an undefined state and empty action object and storing the result in a new variable called wagon (Initialize it with let). Then print the wagon value to the console.
+
+Our initial wagon state should look like this:
+```javascript
+{
+  supplies: 100,
+  distance: 0,
+  days: 0
+}
+```
+
+Note: Call the reducer with undefined and {} as arguments to get the initial state of the wagon.
+
+```javascript 
+console.log(appReducer(undefined, {}))
+```

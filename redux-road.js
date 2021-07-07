@@ -4,7 +4,7 @@ const initialWagonState = {
   days_on_road: 0
 };
 
-export default function appReducer(state = initialWagonState, action) {
+function appReducer(state = initialWagonState, action) {
   switch (action.type) {
     // Do something here based on the different types of actions
     case 'gather': {
@@ -35,4 +35,4 @@ export default function appReducer(state = initialWagonState, action) {
   }
 };
 
-
+console.log(appReducer(undefined, {}))
