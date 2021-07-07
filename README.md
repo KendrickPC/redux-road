@@ -49,14 +49,47 @@ If the action.type is 'gather', return a new state object with:
 Make sure to return a new object to comply with the three rules of reducers.
 Note: Nested inside my switch (action.type) and using the hint given, I inserted the following object:
 
+Hint Below:
 ```javascript
-case 'gather': {
-  return { ...state,
-    supplies: state.supplies + 15,
-    distance_travelled: state.distance_travelled + 0,
-    days_on_road: state.days_on_road + 1
-  }  
+switch (action.type) {
+  case 'eat': {
+    return {
+      ..state,
+      food: state.food - 10
+    };
+  }
+  default: {
+    return state;
+  }
 }
 ```
+And my code for step 4 below:
+
+```javascript
+switch (action.type) {
+  // Do something here based on the different types of actions
+  case 'gather': {
+    return { ...state,
+      supplies: state.supplies + 15,
+      distance_travelled: state.distance_travelled + 0,
+      days_on_road: state.days_on_road + 1
+    }  
+  }
+  default:
+    // If this reducer doesn't recognize the action type, or doesn't
+    // care about this specific action, return the existing state unchanged
+    return state;
+}
+```
+
+Note: For the above code, [redux reducer documentation](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers) uses three dots, but our hint only uses two dots. I chose to go with three dots before the state copy.
+
+5. A player may travel for any number of days, which costs 20 supplies for each day but adds 10 kilometers each day.
+
+If the action.type is 'travel', assume that the action.payload contains the number of days to travel. Return a new state object with:
+  - 20 less supplies for each day
+  - 10 more kilometers of distance traveled for each day
+  - The number of days added to days
+
 
 
