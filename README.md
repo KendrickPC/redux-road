@@ -35,3 +35,10 @@ export default function appReducer(state = initialWagonState, action) {
   }
 }
 ```
+
+3. Add a switch statement to your reducer. The default case should return the state.
+Note: The switch statement was added, according to the Redux documentation on reducers link above.
+
+
+
+
