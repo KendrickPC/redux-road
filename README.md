@@ -98,6 +98,8 @@ switch (action.type) {
     - The same distance
     - 1 more day
 
+### Play
+
 7. Let’s try our game out.
 
   Start a game by calling the reducer with an undefined state and empty action object and storing the result in a new variable called wagon (Initialize it with let). Then print the wagon value to the console.
@@ -164,13 +166,66 @@ currentState = appReducer(currentState, {type: 'gather', payload: undefined})
 console.log(currentState)
 ```
 
-10. 
+10. On the third day, we try to ford a rushing river…and our wagon tips over, spilling some supplies.
 
+Call the reducer with the new wagon state and an action with type: 'tippedWagon'.
+Store the new state back into wagon
+Print the new state.
 
-
+Our wagon state should look like this:
 
 ```javascript
+{
+  supplies: 65,
+  distance: 10,
+  days: 3
+}
+```
 
+```javascript
+currentState = appReducer(currentState, {type: 'tippedWagon', payload: undefined})
+console.log("\nThird day:")
+console.log(currentState)
+```
+
+11. On the following day, we set out for a long 3 days of travel.
+
+Call the reducer with the new wagon state and an action with type: 'travel' and a payload: 3.
+Store the new state back into wagon.
+Print the new state.
+Our final wagon state should look like this:
+```javascript
+{
+  supplies: 5,
+  distance: 40,
+  days: 6
+}
+```
+
+```javascript
+console.log("\nThe following day:")
+currentState = appReducer(currentState, {type: 'travel', payload: 3})
+console.log(currentState)
+```
+
+### Additions and Extra Credit
+
+12. Currently, the player can continue traveling even if their supplies are negative! Fix this in the 'travel' case.
+
+If there are not sufficient supplies to travel the given number of days, return the current state.
+
+```javascript
+case 'travel': {
+  if (state.supplies - (20 * action.payload) < 0) {
+    return {...state}
+  } else {
+    return { ...state,
+      supplies: state.supplies - (20 * action.payload),
+      distance_travelled: state.distance_travelled + (10 * action.payload),
+      days_on_road: state.days_on_road + action.payload
+    }
+  }
+}
 ```
 
 ```javascript
@@ -188,4 +243,11 @@ console.log(currentState)
 ```javascript
 
 ```
+
+```javascript
+
+```
+
+
+
 

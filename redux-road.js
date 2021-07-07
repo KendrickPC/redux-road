@@ -15,10 +15,14 @@ function appReducer(state = initialWagonState, action) {
       }
     }
     case 'travel': {
-      return { ...state,
-        supplies: state.supplies - (20 * action.payload),
-        distance_travelled: state.distance_travelled + (10 * action.payload),
-        days_on_road: state.days_on_road + action.payload
+      if (state.supplies - (20 * action.payload) < 0) {
+        return {...state}
+      } else {
+        return { ...state,
+          supplies: state.supplies - (20 * action.payload),
+          distance_travelled: state.distance_travelled + (10 * action.payload),
+          days_on_road: state.days_on_road + action.payload
+        }
       }
     }
     case 'tippedWagon': {
@@ -35,8 +39,34 @@ function appReducer(state = initialWagonState, action) {
   }
 };
 
+console.log("\nCalling initial state")
 let currentState = appReducer(initialWagonState, {})
-currentState = appReducer(currentState, {type: 'travel', payload: 1})
-currentState = appReducer(currentState, {type: 'gather', payload: undefined})
-
 console.log(currentState)
+
+console.log("\nFirst day:")
+currentState = appReducer(currentState, {type: 'travel', payload: 1})
+console.log(currentState)
+
+console.log("\nSecond day:")
+currentState = appReducer(currentState, {type: 'gather', payload: undefined})
+console.log(currentState)
+
+console.log("\nThird day:")
+currentState = appReducer(currentState, {type: 'tippedWagon', payload: undefined})
+console.log(currentState)
+
+console.log("\nThe following day:")
+currentState = appReducer(currentState, {type: 'travel', payload: 3})
+console.log(currentState)
+
+console.log("\nGoing Negative:")
+currentState = appReducer(currentState, {type: 'travel', payload: 5})
+console.log(currentState)
+
+
+
+
+
+
+
+
