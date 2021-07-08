@@ -228,26 +228,62 @@ case 'travel': {
 }
 ```
 
-```javascript
+13. Well done! You’ve taken great strides on the Redux Road. Watch your supplies and watch out for snakes!
 
+If you’d like to keep practicing, try implementing these features:
+
+13a. Add a cash property, beginning with 200 for the initial state
+```javascript
+const initialWagonState = {
+  supplies: 100,
+  distance_travelled: 0, 
+  days_on_road: 0,
+  cash: 200
+};
 ```
 
+13b. Add a 'sell' case: Players can give away 20 supplies to gain 5 cash
 ```javascript
-
+case 'sell': {
+  if ((state.supplies - 20) < 0) {
+    return {...state}
+  } else {
+    return {...state,
+      supplies: state.supplies - 20,
+      cash: state.cash + 10
+    }
+  }
+}
 ```
 
+13c. Add a 'buy' case: Players can gain 25 supplies at the cost of 15 cash
 ```javascript
-
+case 'buy': {
+  if ((state.cash - 15) < 0) {
+    return {...state}
+  } else {
+    return {...state,
+      supplies: state.supplies + 25,
+      cash: state.cash - 15
+    }
+  }
+}
 ```
+Note: For Buy test (negative cash scenario), change the initialWagonState cash to 14 or less.
 
+13d. Add a 'theft' case: Outlaws steal half of the player’s cash
 ```javascript
-
+// Dividing by zero returns undefined
+case 'theft': {
+  if (state.cash === 0) {
+    return {...state}
+  } else {
+    return {...state,
+      cash: state.cash / 2
+    }
+  }
+}
 ```
-
-```javascript
-
-```
-
 
 
 
